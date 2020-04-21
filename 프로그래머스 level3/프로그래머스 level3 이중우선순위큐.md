@@ -48,37 +48,36 @@ using namespace std;
 //모든 연산 처리후에 큐가 비어있으면 [0,0]리턴 비어있지 않으면 [최대,최소]
 vector<int> solution(vector<string> operations) {
 	vector<int> answer;
-	vector<int>sol;
-	string temp = "";
+	deque<int>sol;
+	string temp;
 	string sub;
 
 	for (int i = 0; i < operations.size(); i++)
 	{
+		sub = operations.at(i);
 		temp = "";
-		sub = operations.at(0);
+		for (int j = 2; j < operations[i].size(); j++)
+		{
+			temp += operations[i][j];
+		}
 		if (sub[0] == 'I')
 		{
-			for (int j = 2; j < operations[i].size(); j++)//공백제외하고 숫자 부분만
-			{
-				temp += operations[i][j];
-			}
 			sol.push_back(stoi(temp));
+			sort(sol.begin(), sol.end());
 		}
-		else if (sub[0] == 'D')
+		else
 		{
 			if (sol.empty())//큐가 비어있으면 연산 무시 
 			{
 				continue;
 			}
-			else if (operations[i].at(2) == '1')
+			if (stoi(temp) == 1)
 			{
-				sort(sol.begin(), sol.end());
-				sol.erase(sol.end());//최대값 삭제
+				sol.pop_back();
 			}
-			else if (operations[i].at(2) == '-1')//최솟값 삭제
+			else //최솟값 삭제
 			{
-				sort(sol.begin(), sol.end());
-				sol.erase(sol.begin());
+				sol.pop_front();
 			}
 		}
 	}
@@ -95,9 +94,27 @@ vector<int> solution(vector<string> operations) {
 		answer.push_back(sol.front());
 	}
 
-
-
 	return answer;
 }
+
+
+
 ```
 
+___
+
+문제설명:
+
+1. 최대값과 최소값의 판별을 위해 탐색이 가능한 deque를 사용합니다
+2. operation에 수행 연산과 수를 나누어서 저장하고 각 기능에 맞게 숫자를 넣거나 삭제를 합니다.
+3. 모든 연산을 처리한후 조건에 맞게 answer에 넣어줍니다.
+
+
+
+처음 벡터를 이용해서 풀었으나 이상하게.. temp==1부분에서 계속해서 core dump가 발생했습니다. 이유를 도저히 못 찾겠어서 deque를 이용해서 다시 풀어보았습니다.
+
+(아직까지 모르겠습니다...)
+
+사용언어:c++
+
+출처: https://programmers.co.kr/learn/courses/30/lessons/42628
