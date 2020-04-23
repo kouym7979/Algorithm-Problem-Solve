@@ -54,9 +54,9 @@ int solution(int n, vector<vector<int>> results) {
 		{
 			for (int k = 1; k <= n; k++)
 			{
-				if (fw[i][j]==1 && fw[j][k]==1)//중간에 거쳐가는 경로가 있으면
+				if (fw[j][i] == 1 && fw[i][k] == 1)//중간에 거쳐가는 경로가 있으면
 				{
-					fw[i][k] =1;//j라는 지점을 통해서 k로 갈 수 있다는 것은 순위 파악이 가능
+					fw[j][k] = 1;//j라는 지점을 통해서 k로 갈 수 있다는 것은 순위 파악이 가능
 				}
 			}
 		}
@@ -67,7 +67,7 @@ int solution(int n, vector<vector<int>> results) {
 		int count = 0;
 		for (int j = 1; j <= n; j++)
 		{
-			if (fw[i][j]==1 || fw[j][i]==1)
+			if (fw[i][j] == 1 || fw[j][i] == 1)
 			{
 				count++;
 			}
@@ -82,7 +82,7 @@ int solution(int n, vector<vector<int>> results) {
 }
 ```
 
-___
+____
 
 이 문제는 모든 정점에서 모든 정점으로 가는 최단 경로를 구하는 Floyd-Warshall 알고리즘을 이용해서 풀어보았습니다.
 
