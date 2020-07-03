@@ -1,4 +1,4 @@
-## 프로그래머스 level2
+## 프로그래머스 level2 전화번호 목록(string)
 
 ###### 문제 설명
 
@@ -85,7 +85,8 @@ string의 compare 함수를 이용하여 풀었습니다.
 
 해당 값은 0과 1 로 판단하며 0은 각 문자열의 begin에서 end까지 같은 형태임을 나타냅니다.
 
-
+이전에 풀었던 문제이지만 다시한번 풀어보았습니다.
 
 사용언어:c++
 
+문제출처: https://programmers.co.kr/learn/courses/30/lessons/42577
